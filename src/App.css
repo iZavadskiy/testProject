@@ -1,10 +1,22 @@
 .App {
-  text-align: center;
+  height: 720px;
+  width: 1280px;
+  overflow-y: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.image--preview{
+  display: table-cell;
+  width: 256px;
+  height: 150px;
+
+}
+.image--highlight{
+  border: 10px double ;
+  border-color: crimson;
+}
+.images--row{
+  display: table;
+  height: 150px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
