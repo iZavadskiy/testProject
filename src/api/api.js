@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {getImages} from "../reducers/actions";
+import {getImages} from "../store/actions";
 
 const getUrl = count =>
     (`https://www.flickr.com/services/rest/?method=flickr.photos.getPopular&api_key=37c722755bfbfc32994675bcafd3ce31&user_id=35034348999%40N01&per_page=${count}&format=json&nojsoncallback=1`);

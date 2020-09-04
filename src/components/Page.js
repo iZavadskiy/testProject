@@ -1,8 +1,11 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
-import Row from "./row";
-import {moveRight, moveLeft, moveDown, moveUp} from '../reducers/actions'
+import Row from "./Row";
+import {moveRight, moveLeft, moveDown, moveUp} from '../store/actions'
 import { getPhotos } from '../api/api';
+
+const FIRST_DOWNLOAD_PHOTO_COUNT = 50;
+const LAZY_DOWNLOAD_PHOTO_COUNT = 40;
 
 let isDelay = false;
 function debounce(func, delay) {
@@ -42,9 +45,9 @@ const Page = props => {
           default: event.preventDefault();
       }
 
-        if(props.position.row === props.images.length-2){
-            props.loadMore();
-        }
+      if(props.position.row === props.images.length-2){
+          props.loadMore();
+      }
     }
 
     const handleScroll =  (e) => {
@@ -65,7 +68,7 @@ const Page = props => {
              onWheel={e=>debounce(()=>handleScroll(e),500)()}
              tabIndex="0">
             {props.images && props.images.map((imgs, index)=>(
-                <Row key={imgs.id} images={imgs} position={props.position.row === index && props.position}/>
+                <Row key={imgs[0].secret} images={imgs} position={props.position.row === index && props.position}/>
             )) }
         </div>
     )
@@ -90,8 +93,8 @@ const actions = dispatch => ({
     moveToLeft: () => dispatch(moveLeft()),
     moveToDown: () => dispatch(moveDown()),
     moveToUp: () => dispatch(moveUp()),
-    getData: () => dispatch(getPhotos(50)),
-    loadMore: () => dispatch(getPhotos(40)),
+    getData: () => dispatch(getPhotos(FIRST_DOWNLOAD_PHOTO_COUNT)),
+    loadMore: () => dispatch(getPhotos(LAZY_DOWNLOAD_PHOTO_COUNT)),
 })
 
 

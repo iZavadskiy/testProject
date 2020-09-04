@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import './index.css';
 import App from './App';
-import mainReducer from './reducers';
+import mainReducer from './store';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(mainReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(reduxThunk));
