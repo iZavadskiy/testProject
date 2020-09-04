@@ -56,6 +56,9 @@ const Page = props => {
         }else{
             props.moveToUp();
         }
+        if(props.position.row === props.images.length-2){
+            props.loadMore();
+        }
     }
 
    useEffect(()=>{
